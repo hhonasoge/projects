@@ -1,1 +1,1 @@
-Repository for personal projects
+Repository for personal projects.

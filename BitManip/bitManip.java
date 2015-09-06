@@ -17,11 +17,20 @@ public class bitManip {
 		int mask = ~(1<<i);
 		return (num & mask)| (val << i);
 	}
+	public static int clearBits(int N, int i, int j) {
+		int mask1 = ~(-1 >>> (31-i));
+		int mask2 = (-1 >>> (32-j));
+		int mask3 = mask1 | mask2;
+		return N & mask3;
+
+	}
+	public static int insert(int N, int M, int i, int j){
+		int newN = clearBits(N, i, j);
+		int newM = M << i;
+		return newN | newM;
+	}
 	public static void main(String[] args) {
-		System.out.println(getBit(3, 1));
-		System.out.println(setBit(4, 0));
-		System.out.println(clearBit(4, 2));
-		System.out.println(updateBit(4, 0, true));
+		System.out.println(insert(1024, 19, 2, 6));
 	}
 
 }

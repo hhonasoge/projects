@@ -31,6 +31,16 @@ public class bitManip {
 		}
 		return count;
 	}
+	public static int numFlips(int a, int b) {
+		int tmp = a ^ b;
+		int count = 0;
+		for (int i=0; i<32; i++) {
+			if (getBit(tmp, i) == 1) {
+				count++;
+			}
+		}
+		return count;
+	}
 	public static int flipBit(int num) {
 		int maxOneCount = 0;
 		int currCount = 0;
@@ -64,8 +74,9 @@ public class bitManip {
 	}
 
 	public static void main(String[] args) {
-		System.out.println(insert(1024, 19, 2, 6));
-		System.out.println(flipBit(1775));
+		// System.out.println(insert(1024, 19, 2, 6));
+		// System.out.println(flipBit(1775));
+		System.out.println(numFlips(29, 15));
 	}
 
 }

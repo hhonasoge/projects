@@ -41,6 +41,9 @@ public class bitManip {
 		}
 		return count;
 	}
+	public static int pairWiseSwap(int a) {
+		return ((a & 0xaaaaaaaa) >>> 1) | ((a & 0x55555555) << 1);
+	}
 	public static int flipBit(int num) {
 		int maxOneCount = 0;
 		int currCount = 0;
@@ -74,9 +77,10 @@ public class bitManip {
 	}
 
 	public static void main(String[] args) {
-		// System.out.println(insert(1024, 19, 2, 6));
-		// System.out.println(flipBit(1775));
+		System.out.println(insert(1024, 19, 2, 6));
+		System.out.println(flipBit(1775));
 		System.out.println(numFlips(29, 15));
+		System.out.println(pairWiseSwap(5));
 	}
 
 }

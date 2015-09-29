@@ -33,9 +33,20 @@ public class uniqueChars {
 		}
 		return true;
 	}
-
+	public static String URLify(String word) {
+		String rv = "";
+		for (int i=0; i<word.length(); i++) {
+			if (word.charAt(i)==' ') {
+				rv += "%20";
+			} else {
+				rv+=word.charAt(i);
+			}
+		}
+		return rv;
+	}
 	public static void main(String[] args){
   		System.out.println(hasUniqueChars2("Harsha"));
   		System.out.println(hasUniqueChars2("abcdefg"));
+  		System.out.println(URLify("This is a sentence"));
 	}
 }

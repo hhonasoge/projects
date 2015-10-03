@@ -1,6 +1,6 @@
 public class NodeSingle extends Node {
 	// public int value;
-	// public NodeSingle next;
+	public NodeSingle next1;
 	public NodeSingle(int value) {
 		this.value = value;
 	}

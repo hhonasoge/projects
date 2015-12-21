@@ -66,17 +66,74 @@ public class strings {
 	public static void print(Object input){
 		System.out.println(input);
 	}
+	// public class newClass extends Collection {
+	// 	int a, b;
+	// 	public newClass(int a, int b){
+	// 		this.a = a;
+	// 		this.b = b;
+	// 	}
+	// }
+	public static boolean isPermutation(String a, String b){
+		//O(nlogn + mlogm) time
+		//O(m + n) space
+		char[] aCharArray = a.toCharArray();
+		char[] bCharArray = b.toCharArray();
+		Arrays.sort(aCharArray);
+		Arrays.sort(bCharArray);
+		String sortedA = new String(aCharArray);
+		String sortedB = new String(bCharArray);
+		return (sortedA.equals(sortedB));
+	}
+	public static boolean isPermutation2(String a, String b){
+		//O(1) space
+		//O(n+m) time
+		if (a.length()!=b.length())return false;
+		int[] charArray = new int[128];
+		for (int i=0; i<a.length(); i++){
+			charArray[(int)a.charAt(i)-'a']++;
+		}
+		for (int i=0;i<b.length();i++){
+			charArray[(int)b.charAt(i)-'a']--;
+			if (charArray[(int)b.charAt(i)-'a'] < 0){
+				return false;
+			}
+		}
+		return true;
+	}
+
 	public static void main(String[] args) {
 		String test="Harsha";
 		String test2 = "asdfg";
 		String test3 = "";
 		String test4=null;
 		String test5 = "aA";
+
+
+		// System.out.println("Before");
+		// String x = args[0].toLowerCase();
+		// HashSet<Character> contents = new HashSet<Character>();
+
+		// for (int i =0; i < x.length(); i++) {
+		// 	char b = x.charAt(i);
+		// 	if (contents.contains(b)) {
+		// 		System.out.println("false");
+		// 		break;
+		// 	} else {
+		// 		contents.add(b);
+		// 	}
+		// }
+		// System.out.println("After");
 		print(hasUniqueChars2(test));//false
 		print(hasUniqueChars2(test2));//true
 		print(hasUniqueChars2(test3));//true
 		print(hasUniqueChars2(test4));//false
 		print(hasUniqueChars2(test5));//true
+
+		print("-------");
+		print(isPermutation2("harsha", "arshah"));
+		print(isPermutation2("asfjw", "alkfgwe"));
+
+		// newClass a = new newClass();
 		// Class c = test.getClass();
 		// System.out.println(b instanceof String);
 		// System.out.println(test + "Honasoge");

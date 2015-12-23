@@ -16,7 +16,7 @@ public class NodeSingle extends Node {
 			NodeSingle d = (NodeSingle) next;
 			this.next = d;
 		} catch(Exception ex) {
-			System.out.println("Error: must provide NodeDouble " + ex.getMessage());
+			System.out.println("Error: must provide NodeSingle " + ex.getMessage());
 		}
 	}
 }

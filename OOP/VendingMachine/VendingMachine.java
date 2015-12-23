@@ -12,17 +12,14 @@ public class VendingMachine {
 		for (int i=0; i<rows; i++) {
 			ArrayList<LinkedList<Item>> itemColumns = new ArrayList<LinkedList<Item>>();
 			for (int j=0; j<columns; j++) {
-				// machine.get(i).get(j) = new LinkedList<Item>();
 				itemColumns.add(new LinkedList<Item>());
 			}
 			machine.add(itemColumns);
 		}
-		// machine = new ArrayList<ArrayList<Item>>(); //[rows][columns];
 	}
 	public void restock(Item item, char row, int column) {
 		int columnNum = column - 1;
-		int rowNum = (int) row - 65;
-		System.out.println(rowNum);
+		int rowNum = (int) row - 'A';
 		if (rowNum<0 || rowNum>rows-1) { System.out.println("Specify Row from A-Z"); return;}
 		if (column<0 || columnNum > columns-1) {System.out.println("Column Index out of range"); return;}
 
@@ -34,7 +31,7 @@ public class VendingMachine {
 		}
 	}
 	public ItemWithChange giveItem(char row, int column, double amountGiven){
-		int rowNum = (int) row - 65;
+		int rowNum = (int) row - 'A';
 		int columnNum = column - 1;
 		LinkedList<Item> itemList = machine.get(rowNum).get(columnNum);
 		Item item;
@@ -54,7 +51,7 @@ public class VendingMachine {
 	public void print(){
 		for (int i=0; i<rows; i++) { 
 			for (int j=0; j<columns; j++) {
-				char rowChar = (char) (i + 65);
+				char rowChar = (char) (i + 'A');
 				String itemType = "";
 				LinkedList<Item> itemList = machine.get(i).get(j);
 				int size = itemList.size();

@@ -1,14 +1,23 @@
-public class Card {
-	private Suit suit;
-	private int faceValue;
+public abstract class Card {
+	public Suit suit;
+	public int faceValue;
+	private boolean available = true;
 	public Card(Suit suit, int faceValue) {
 		this.suit = suit;
 		if (faceValue>0 && faceValue < 14) {
 			this.faceValue = faceValue;
 		}
 	}
+	public abstract int value();
 	public Suit getSuit() {
 		return suit;
+	}
+	public void markUnavailable() {
+		available = false;
+	}
+	
+	public void markAvailable() {
+		available = true;
 	}
 	public int getfaceValue() {
 		return faceValue;
@@ -32,8 +41,8 @@ public class Card {
 		}
 	}
 	public static void main(String[] args) {
-		Card firstCard = new Card(Suit.Club, 12);
-		firstCard.print();
+		// Card firstCard = new Card(Suit.Club, 12);
+		// firstCard.print();
 	}
 
 }

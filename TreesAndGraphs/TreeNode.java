@@ -143,6 +143,92 @@ public class TreeNode{
 		int rightHeight = right != null ? right.height() : 0;
 		return 1 + Math.max(leftHeight, rightHeight);
 	}
+	public static boolean isBalanced(TreeNode root){
+		if (root==null)return true;
+		int leftHeight=root.left.height();
+		int rightHeight=root.right.height();
+		if(Math.abs(rightHeight-leftHeight)>1)return false;
+		return (isBalanced(root.right) && isBalanced(root.left));
+	}
+	public static boolean isBalanced2(TreeNode root){
+		if (checkHeight(root)==-1){
+			return false;
+		} else {
+			return true;
+		}
+	}
+	public static int checkHeight(TreeNode root){
+		int leftHeight;
+		int rightHeight;
+		if (root.left==null){
+			leftHeight = 0;
+		} else {
+			leftHeight = checkHeight(root.left);
+		}
+		if (root.right==null){
+			rightHeight = 0;
+		} else {
+			rightHeight = checkHeight(root.right);
+		}
+		if (leftHeight==-1||rightHeight==-1){
+			return -1;
+		}
+		int diff = Math.abs(leftHeight - rightHeight);
+		if (diff>1){
+			return -1;
+		} else {
+			return Math.max(leftHeight, rightHeight)+1;
+		}
+	}
+	public static boolean isBST(TreeNode root){
+		Integer last_printed = null;
+		return isBSTHelper(root, last_printed);
+	}
+	public static boolean isBSTHelper(TreeNode root, Integer last_printed){
+		if (root==null)return true;
+		if (!isBSTHelper(root.left, last_printed))return false;
+		if (last_printed!=null&&root.data<last_printed)return false;
+		last_printed=root.data;
+		if (!isBSTHelper(root.right, last_printed))return false;
+		return true;
+	}
+	public static int countPathsWithSum(TreeNode root, int targetSum){
+		if (root==null)return 0;
+		int sumThis = countPathsFromNode(root, targetSum, 0);
+		return sumThis+countPathsWithSum(root.left, targetSum)+countPathsWithSum(root.right, targetSum);
+	}
+	public static int countPathsFromNode(TreeNode root, int targetSum, int currSum){
+		if (root==null)return 0;
+		currSum+=root.data;
+		int totalPaths = 0;
+		if (currSum==targetSum){
+			totalPaths+=1;
+		}
+		return totalPaths + countPathsFromNode(root.left, targetSum, currSum) + countPathsFromNode(root.right, targetSum, currSum);
+	}
+	public static int countPathsWithSum2(TreeNode root, int targetSum){
+		if (root==null)return 0;
+		HashMap<Integer, Integer> pathCounts = new HashMap<Integer, Integer>();
+		pathCounts.put(0, 1);
+		return countPathsWithSum2(root, targetSum, 0, pathCounts);
+	}
+	public static int countPathsWithSum2(TreeNode root, int targetSum, int runningSum, HashMap<Integer, Integer> pathCounts){
+		if (root==null)return 0;
+		runningSum+=root.data;
+		if (pathCounts.containsKey(runningSum)){
+			pathCounts.put(runningSum, pathCounts.get(runningSum)+1);
+		} else {
+			pathCounts.put(runningSum, 1);
+		}
+		int totalPaths = 0;
+		if (pathCounts.containsKey(runningSum-targetSum)){
+			totalPaths+= pathCounts.get(runningSum-targetSum);
+		}
+		totalPaths+=countPathsWithSum2(root.left, targetSum, runningSum, pathCounts);
+		totalPaths+=countPathsWithSum2(root.right, targetSum, runningSum, pathCounts);
+		pathCounts.put(runningSum, pathCounts.get(runningSum)-1);
+		return totalPaths;
+	}
 	public static void main(String[] args){
 		TreeNode root = new TreeNode(5);
 		for(int i=0;i<10;i++){

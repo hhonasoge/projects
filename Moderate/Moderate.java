@@ -37,6 +37,11 @@ public class Moderate{
 		}
 		return minDiff;
 	}
+	public static int findMax(int a, int b){
+		int c = a-b;
+		int i = c>>31;
+		return a + i*c;
+	}
 	public static void main(String[] args){
 		int[] test = {1, 2, 3, 4};
 		swap(test, 1, 2);
@@ -49,5 +54,6 @@ public class Moderate{
 		int[] b = {23, 127, 235, 19, 8};
 		System.out.println("smallestDifferenceBrute: " + smallestDifferenceBrute(a, b));
 		System.out.println("smallestDifferenceOptimal: " + smallestDifferenceOptimal(a, b));
+		System.out.println(findMax(5, 3));
 	}
 }
